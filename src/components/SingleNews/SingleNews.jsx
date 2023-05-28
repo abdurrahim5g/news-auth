@@ -5,22 +5,25 @@ import "./SingleNews.css";
 
 // eslint-disable-next-line react/prop-types
 const SingleNews = ({ singleNews, isSingle = false }) => {
-  const {
-    _id,
-    category_id,
-    total_view,
-    title,
-    author,
-    image_url,
-    thumbnail_url,
-    details,
-  } = singleNews;
+  // eslint-disable-next-line react/prop-types
+  const { _id, total_view, title, author, image_url, details } = singleNews;
+
+  // eslint-disable-next-line react/prop-types
+  const { name, img, published_date } = author;
 
   console.log(singleNews);
   return (
     <article className="single-news">
       <Card>
-        {isSingle && <Card.Header>Featured</Card.Header>}
+        {isSingle && (
+          <Card.Header>
+            <img src={img} alt={name} />
+            <div className="author-others">
+              <h5>{name}</h5>
+              <p>{published_date}</p>
+            </div>
+          </Card.Header>
+        )}
         <div className="news-image">
           <Card.Img variant="top" src={image_url} />
           <span className="total-views">
