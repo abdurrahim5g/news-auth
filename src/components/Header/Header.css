@@ -1,0 +1,8 @@
+a.navbar-brand {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
