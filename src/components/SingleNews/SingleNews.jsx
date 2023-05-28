@@ -1,14 +1,12 @@
-import { Badge, Button, Card } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { Badge, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import "./SingleNews.css";
 
-// eslint-disable-next-line react/prop-types
 const SingleNews = ({ singleNews, isSingle = false }) => {
-  // eslint-disable-next-line react/prop-types
   const { _id, total_view, title, author, image_url, details } = singleNews;
 
-  // eslint-disable-next-line react/prop-types
   const { name, img, published_date } = author;
 
   console.log(singleNews);
