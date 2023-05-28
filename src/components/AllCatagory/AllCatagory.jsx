@@ -17,7 +17,7 @@ const AllCatagory = () => {
         <ul>
           {category?.map((c) => (
             <li key={c.id}>
-              <Link to={`/catagory/${c.id}`}>{c.name}</Link>
+              <Link to={`/category/${c.id}`}>{c.name}</Link>
             </li>
           ))}
         </ul>
