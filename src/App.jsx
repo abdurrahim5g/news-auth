@@ -1,14 +1,9 @@
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import { Col, Container } from "react-bootstrap";
+import router from "./Routers/Routers";
 
 function App() {
-  return (
-    <Container>
-      <Col lg="12">
-        <h2>Basic project setup done</h2>
-      </Col>
-    </Container>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
