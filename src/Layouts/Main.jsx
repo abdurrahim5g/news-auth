@@ -12,13 +12,13 @@ const Main = () => {
       <section className="outlet-container py-5 ">
         <Container>
           <Row>
-            <Col lg="2">
+            <Col lg="2" className="d-lg-block d-none">
               <AllCatagory></AllCatagory>
             </Col>
             <Col lg="7">
               <Outlet></Outlet>
             </Col>
-            <Col lg="3">
+            <Col lg="3" className="mt-lg-0 mt-4">
               <RightSidebar></RightSidebar>
             </Col>
           </Row>
