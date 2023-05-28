@@ -3,6 +3,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Col, Container, Row } from "react-bootstrap";
 import AllCatagory from "../components/AllCatagory/AllCatagory";
+import RightSidebar from "../components/RightSidebar/RightSidebar";
 
 const Main = () => {
   return (
@@ -17,7 +18,9 @@ const Main = () => {
             <Col lg="7">
               <Outlet></Outlet>
             </Col>
-            <Col lg="3"></Col>
+            <Col lg="3">
+              <RightSidebar></RightSidebar>
+            </Col>
           </Row>
         </Container>
       </section>
