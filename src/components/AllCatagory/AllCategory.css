@@ -1,0 +1,14 @@
+.category-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-links ul li a {
+  display: block;
+  line-height: 2;
+}
+
+.category-links ul li a:hover {
+  text-decoration: underline !important;
+}
