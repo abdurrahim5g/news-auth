@@ -1,0 +1,9 @@
+.news-image {
+  position: relative;
+}
+.news-image .total-views {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+}
