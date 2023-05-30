@@ -5,12 +5,15 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import AllCatagory from "../AllCatagory/AllCatagory";
 import { useAuthContex } from "../../Contex/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
   const { user, logOut } = useAuthContex();
 
   const handleLogOut = () => {
-    logOut();
+    logOut()
+      .then(() => toast.success("Login sucessfull"))
+      .catch((err) => toast.error(err.message));
   };
 
   return (
