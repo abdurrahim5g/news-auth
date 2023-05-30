@@ -6,3 +6,11 @@ a.navbar-brand {
 .flex-end {
   justify-content: flex-end;
 }
+
+.logo-link {
+  display: block;
+}
+
+.logo-link span {
+  line-height: 1;
+}

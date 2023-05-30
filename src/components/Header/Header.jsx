@@ -1,4 +1,4 @@
-import { Badge } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
@@ -7,24 +7,57 @@ import AllCatagory from "../AllCatagory/AllCatagory";
 import { useAuthContex } from "../../Contex/AuthProvider";
 
 const Header = () => {
-  const { user } = useAuthContex();
+  const { user, logOut } = useAuthContex();
+
+  const handleLogOut = () => {
+    logOut();
+  };
+
   return (
-    <div className="header-component">
-      <Navbar bg="light" expand="lg">
+    <div className="header-component ">
+      <Navbar bg="light" expand="lg" className="py-2">
         <Container>
-          <Navbar.Brand href="#">
-            <Link to={"/"}>
-              <Badge bg="primary">News</Badge> Portal
-            </Link>
-          </Navbar.Brand>
+          <Link
+            to={"/"}
+            style={{
+              fontSize: "40px",
+              justifyContent: "center",
+              verticalAlign: "middle",
+            }}
+            className="logo-link"
+          >
+            <Badge bg="primary">News</Badge> <span>Portal</span>
+          </Link>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll" className="flex-end">
             <div className="d-block d-lg-none py-3">
               <AllCatagory></AllCatagory>
             </div>
-            <div className="user-info">
-              <h2>Welcome: {user?.displayName}</h2>
-            </div>
+            {!user ? (
+              <div className="login">
+                <Link to="/login" className="btn btn-primary">
+                  Login
+                </Link>
+              </div>
+            ) : (
+              <div className="user-info">
+                <div className="base-info d-flex align-items-center ">
+                  <h5 className="m-0">
+                    {user?.displayName}
+                    <br />
+                    <Button className="py-1 mt-1" onClick={handleLogOut}>
+                      Log Out
+                    </Button>
+                  </h5>
+                  <img
+                    src={user?.photoURL}
+                    alt={user?.displayName}
+                    className="rounded ms-3"
+                    style={{ width: "60px" }}
+                  />
+                </div>
+              </div>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
