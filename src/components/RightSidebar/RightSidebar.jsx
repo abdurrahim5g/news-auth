@@ -35,6 +35,13 @@ const RightSidebar = () => {
       });
   };
 
+  // empty login
+  const handleEmptyLogin = (text) => {
+    toast(`${text} login coming sooooon...`, {
+      icon: "🚀",
+    });
+  };
+
   return (
     <div className="right-sidebar-component ">
       {!user?.uid && (
@@ -46,7 +53,11 @@ const RightSidebar = () => {
             >
               <FaGoogle /> Login with Google
             </Button>
-            <Button variant="outline-secondary" className="mt-2 ">
+            <Button
+              variant="outline-secondary"
+              className="mt-2 "
+              onClick={() => handleEmptyLogin("Facebook")}
+            >
               <FaFacebook /> Login with Facebook
             </Button>
           </ButtonGroup>
