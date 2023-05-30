@@ -4,6 +4,7 @@ import Footer from "../components/Footer/Footer";
 import { Col, Container, Row } from "react-bootstrap";
 import AllCatagory from "../components/AllCatagory/AllCatagory";
 import RightSidebar from "../components/RightSidebar/RightSidebar";
+import { Toaster } from "react-hot-toast";
 
 const Main = () => {
   return (
@@ -25,6 +26,7 @@ const Main = () => {
         </Container>
       </section>
       <Footer></Footer>
+      <Toaster />
     </main>
   );
 };

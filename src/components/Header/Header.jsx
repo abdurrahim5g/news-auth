@@ -1,13 +1,13 @@
 import { Badge } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import AllCatagory from "../AllCatagory/AllCatagory";
+import { useAuthContex } from "../../Contex/AuthProvider";
 
 const Header = () => {
+  const { user } = useAuthContex();
   return (
     <div className="header-component">
       <Navbar bg="light" expand="lg">
@@ -22,15 +22,9 @@ const Header = () => {
             <div className="d-block d-lg-none py-3">
               <AllCatagory></AllCatagory>
             </div>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+            <div className="user-info">
+              <h2>Welcome: {user?.displayName}</h2>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
