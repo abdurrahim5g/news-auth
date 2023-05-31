@@ -1,7 +1,7 @@
 import "./Login.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuthContex } from "../../Contex/AuthProvider";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -10,6 +10,9 @@ const Login = () => {
   const [error, setError] = useState(false);
   const { userSignIn, setUser } = useAuthContex();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
 
   // handleFormSubmit
   const handleSubmit = (event) => {
@@ -29,7 +32,9 @@ const Login = () => {
             setUser(result?.user);
             setError();
             toast.success("Login sucessfully");
-            navigate("/");
+            navigate(from, {
+              replace: true,
+            });
           }
         })
         .catch((err) => setError(err.code));
