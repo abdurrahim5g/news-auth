@@ -9,7 +9,7 @@ const SingleNews = ({ singleNews, isSingle = false }) => {
 
   const { name, img, published_date } = author;
 
-  console.log(singleNews);
+  // console.log(singleNews);
   return (
     <article className="single-news">
       <Card>

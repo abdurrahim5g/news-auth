@@ -12,7 +12,7 @@ const Header = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then(() => toast.success("Login sucessfull"))
+      .then(() => toast.success("Logout sucessfully"))
       .catch((err) => toast.error(err.message));
   };
 
@@ -36,10 +36,14 @@ const Header = () => {
             <div className="d-block d-lg-none py-3">
               <AllCatagory></AllCatagory>
             </div>
-            {!user ? (
+
+            {!user?.uid ? (
               <div className="login">
                 <Link to="/login" className="btn btn-primary">
                   Login
+                </Link>
+                <Link to="/signup" className="btn btn-primary ms-2">
+                  Sign Up
                 </Link>
               </div>
             ) : (

@@ -1,37 +1,76 @@
 import "./Login.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthContex } from "../../Contex/AuthProvider";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
+  const [error, setError] = useState(false);
+  const { userSignIn, setUser } = useAuthContex();
+  const navigate = useNavigate();
+
+  // handleFormSubmit
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    if (email && password) {
+      userSignIn(email, password)
+        .then((result) => {
+          console.log(result.user);
+          if (!result?.user?.emailVerified) {
+            setError("Please varify your email & then try to login");
+          } else {
+            setUser(result?.user);
+            setError();
+            toast.success("Login sucessfully");
+            navigate("/");
+          }
+        })
+        .catch((err) => setError(err.code));
+    } else {
+      setError("Please correct your information");
+    }
+
+    console.log(email, password);
+  };
+
   return (
     <section className="login-component">
       <div className="bg-light p-5">
         <h3 className="mb-4">Login</h3>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control type="email" placeholder="Enter email" name="email" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
+
+          <div className="error-message mb-2">
+            {error && <Form.Text className="text-danger">{error}</Form.Text>}
+          </div>
+
           <Button variant="primary" type="submit">
-            Submit
+            Login
           </Button>
+
           <p>
             New to <em>News portal</em>{" "}
             <Link to="/signup">Create new account</Link>
           </p>
-
-          <div className="error-message mt-2">
-            <Form.Text className="text-danger">error</Form.Text>
-          </div>
         </Form>
       </div>
     </section>

@@ -4,19 +4,38 @@ const AuthContex = createContext();
 export const useAuthContex = () => useContext(AuthContex);
 
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
+
 import app from "../firebase/firebase.config";
 
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({ name: "Abdur Rahim" });
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
   const auth = getAuth(app);
+
+  // user Sign Up
+  const userSignUp = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // user Sign In
+  const userSignIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // update user profile
+  const updateUserProfile = (userInfo) => {
+    return updateProfile(auth.currentUser, userInfo);
+  };
 
   // provider login
   const providerLogin = (provider) => {
@@ -31,14 +50,27 @@ const AuthProvider = ({ children }) => {
   // check auth  state
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      console.log(currentUser);
+      if (currentUser?.emailVerified || currentUser === null) {
+        setUser(currentUser);
+      }
       setLoading(false);
     });
     return unSubscribe;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const authInfo = { user, loading, auth, providerLogin, logOut };
+  const authInfo = {
+    user,
+    setUser,
+    loading,
+    auth,
+    providerLogin,
+    logOut,
+    userSignUp,
+    userSignIn,
+    updateUserProfile,
+  };
   return <AuthContex.Provider value={authInfo}>{children}</AuthContex.Provider>;
 };
 
