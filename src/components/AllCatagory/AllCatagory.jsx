@@ -5,7 +5,7 @@ import "./AllCategory.css";
 const AllCatagory = () => {
   const [category, setCategory] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/categories/")
+    fetch("https://news-auth-server-f-rahim.vercel.app/categories/")
       .then((response) => response.json())
       .then((data) => setCategory(data));
   }, []);

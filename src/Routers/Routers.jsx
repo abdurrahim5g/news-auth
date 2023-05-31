@@ -20,14 +20,18 @@ const router = createBrowserRouter([
       {
         path: "/category/:id",
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/categories/${params.id}`);
+          return fetch(
+            `https://news-auth-server-f-rahim.vercel.app/categories/${params.id}`
+          );
         },
         element: <Category></Category>,
       },
       {
         path: "/news/:id",
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/news/${params.id}`);
+          return fetch(
+            `https://news-auth-server-f-rahim.vercel.app/news/${params.id}`
+          );
         },
         element: (
           <Protected>

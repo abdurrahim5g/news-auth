@@ -6,7 +6,7 @@ const Home = () => {
   const [news, setNews] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/news/")
+    fetch("https://news-auth-server-f-rahim.vercel.app/news/")
       .then((res) => res.json())
       .then((data) => setNews(data));
   }, []);
