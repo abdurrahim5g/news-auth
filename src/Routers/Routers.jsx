@@ -4,6 +4,9 @@ import Home from "../Pages/Home/Home";
 import News from "../Pages/News/News";
 import Category from "../Pages/Category/Category";
 import Protected from "./Protected";
+import Login from "../components/Login/Login";
+import SignUp from "../components/SIgnUp/SignUp";
+import TramsAndConditions from "../components/TramsAndConditions/TramsAndCondetion";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,18 @@ const router = createBrowserRouter([
             <News></News>
           </Protected>
         ),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/signup",
+        element: <SignUp></SignUp>,
+      },
+      {
+        path: "/trams-and-conditions",
+        element: <TramsAndConditions></TramsAndConditions>,
       },
     ],
   },
